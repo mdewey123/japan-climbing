@@ -1,0 +1,25 @@
+<!-- Drop down nav bar
+  header
+  title
+  --> 
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}TITLE{% endblock %}</title>
+        <!--<link rel="stylesheet" href="bootstrap"> -->
+        <link href="{% static 'weather_report/styles.css' %}" rel="stylesheet">
+    </head>
+
+<body>
+    <nav class="nav-bar">
+        <a href="{% url 'weather' %}">Crag Forecast</a>
+        <a href="{% url 'crag_forecast'%}">Crag Search</a
+        <a href="">3</a>
+        <a href="">4</a>
+    </nav>
+
+    <div class="header">
+        <h1>Japan Crags</h1>
+    </div>
+</body>
