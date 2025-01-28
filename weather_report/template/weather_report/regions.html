@@ -1,16 +1,35 @@
 {% extends "weather_report/layout.html" %}
-
 {% block body %}
 
-<div class="region-list">
-  <ul>
-    {% for region in region %}
-      <li>
-        <a href= "{% url 'region_detail' region.id %}" <!-- double check -->
-          {{ region.name }}
-      </li>
-    {% end for %}
-  </ul>
+<div class="row">
+    <div calss="col">
+        Weather display 1
+    </div>
+    <div calss="col">
+        Weather display 2
+    </div>
+    <div calss="col">
+        Weather display 3
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h2>{{region}}</h2>
+    </div>
+    {% for place in area %}
+    <div class="col">
+        <div class="container-md">
+            <ul>
+                {% for crag in Crags %}
+                {% if crag.region == region %}
+                <li><a href="{{urls 'local_forecast' crag.name}}" {{reg.name}}</li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 
 {% end block %}
