@@ -4,12 +4,12 @@ from django.db.models.deletion import CASCADE
 
 # Create your models here.
 
-def User(AbstractUser):
-  watchlist = models.foreignkey(Crags, on_delete=models.CASCADE, multiple = True)
-  home = models.foreignkey(Regions, on_delete = models.CASCADE)
+class User(AbstractUser):
+  watchlist = models.ManyToManyField('Crags')
+  home = models.ForeignKey('Regions', on_delete = models.CASCADE)
   nicname = models.CharField(max_length = 69)
   def __str__(self):
-    return f"{self.user.username} ({self.user.email})"
+    return f"{self.username} ({self.email})"
 
 class Area(models.Model):
   name = models.CharField(max_length=50)
@@ -18,7 +18,7 @@ class Area(models.Model):
     return self.name
 
 class Regions(models.Model):
-  area = models.foreingkey(Area, on_delete=models.CASCADE)
+  area = models.ForeignKey(Area, on_delete=models.CASCADE)
   name = models.CharField(max_length=50)
   latitude = models.DecimalField(max_digits=9, decimal_places=6)
   longitude = models.DecimalField(max_digits=9, decimal_places=6)
@@ -28,8 +28,8 @@ class Regions(models.Model):
     return self.name
 
 class Crags(models.Model):
-  area = models.foreignkey(Area, on_delete=models.CASCADE)
-  region = models.foreingkey(Regions, on_delete=models.CASCADE)
+  area = models.ForeignKey(Area, on_delete=models.CASCADE)
+  region = models.ForeignKey(Regions, on_delete=models.CASCADE)
   name = models.CharField(max_length=50)
   latitude = models.DecimalField(max_digits=9, decimal_places=6)
   longitude = models.DecimalField(max_digits=9, decimal_places=6)
