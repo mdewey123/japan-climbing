@@ -7,17 +7,22 @@ from . import weather_access
 
 def index(request):
     weather_access
-    return render(request, 'weather_report/index.html')
+    area = Area.objects.all()
+    regions = Region.objects.all()
+    return render(request, 'weather_report/index.html', {
+        "areas": area,
+        "regions": regions,
+    })
 
-def region_forecast(request, region):
-    current_region = get_object_or_404(models.Regions, name=region)
+def area_forecast(request, area):
+    current_area = get_object_or_404(Area, name=area)
     return render(request, 'weather_report/regions.html',
             {
-                'region': region,
+                'region': current_area,
             })
 
 def local_forecast(request, crag):
-    crag = get_object_or_404(models.Crags, name=crag)
+    crag = get_object_or_404(Crags, name=crag)
     return render(request, 'weather_report/crag.html',
             {
                 'crag': crag,

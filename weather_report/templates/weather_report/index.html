@@ -2,31 +2,31 @@
 {% load static %}
 
 {% block body %}
-    <h1>TEST</h1>
-    
+
+
     <div class="row">
-        <div calss="col">
+        <div class="col">
             Weather display 1
         </div>
-        <div calss="col">
+        <div class="col">
             Weather display 2
         </div>
-        <div calss="col">
+        <div class="col">
             Weather display 3
         </div>
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col-12">
             <h2>Regions</h2>
         </div>
-        {% for place in area %}
+        {% for region in regions %}
         <div class="col">
             <div class="container-md">
-                <ul><h3>{{place.name}}</h3>
-                    {% for region in Regions %}
-                    {% if region.area == place %}
-                    <li><a href="{% url 'region_forecast' region.name %}">{{region.name}}</a></li>
+                <ul><h3>{{region.name}}</h3>
+                    {% for area in areas %}
+                    {% if area.region == region %}
+                    <li><a href="{% url 'area_forecast' area.name %}">{{region.name}}</a></li>
                     {% endif %}
                     {% endfor %}
                 </ul>
