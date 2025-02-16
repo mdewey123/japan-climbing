@@ -1,35 +1,38 @@
 {% extends "weather_report/layout.html" %}
+{% load static %}
+
 {% block body %}
-
-<div class="row">
-    <div calss="col">
-        Weather display 1
-    </div>
-    <div calss="col">
-        Weather display 2
-    </div>
-    <div calss="col">
-        Weather display 3
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <h2>Regions</h2>
-    </div>
-    {% for place in area %}
-    <div class="col">
-        <div class="container-md">
-            <ul><h3>{{place.name}}</h3>
-                {% for region in Regions %}
-                {% if region.area == place %}
-                <li><a href="{{urls 'region_forecast' region.name}}">{{region.name}}</a></li>
-                {% endif %}
-                {% endfor %}
-            </ul>
+    <h1>TEST</h1>
+    
+    <div class="row">
+        <div calss="col">
+            Weather display 1
+        </div>
+        <div calss="col">
+            Weather display 2
+        </div>
+        <div calss="col">
+            Weather display 3
         </div>
     </div>
-    {% endfor %}
-</div>
 
-{% end block %}
+    <div class="row">
+        <div class="col">
+            <h2>Regions</h2>
+        </div>
+        {% for place in area %}
+        <div class="col">
+            <div class="container-md">
+                <ul><h3>{{place.name}}</h3>
+                    {% for region in Regions %}
+                    {% if region.area == place %}
+                    <li><a href="{% url 'region_forecast' region.name %}">{{region.name}}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
