@@ -1,35 +1,33 @@
 {% extends "weather_report/layout.html" %}
 {% block body %}
 
-<div class="row">
-    <div calss="col">
+<div id="top-3" class="row">
+    <div class="col">
         Weather display 1
     </div>
-    <div calss="col">
+    <div class="col">
         Weather display 2
     </div>
-    <div calss="col">
+    <div class="col">
         Weather display 3
     </div>
 </div>
 
 <div class="row">
     <div class="col">
-        <h2>{{region}}</h2>
+        <h2>{{area}}</h2>
     </div>
-    {% for place in area %}
     <div class="col">
         <div class="container-md">
             <ul>
-                {% for crag in Crags %}
-                {% if crag.region == region %}
-                <li><a href="{{urls 'local_forecast' crag.name}}" {{reg.name}}</li>
-                {% endif %}
+                {% for crag in crags %}
+                    {% if crag.area == area %}
+                    <li><a href="{% url 'local_forecast' crag.slug %}"> {{crag.name}} </a></li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </div>
     </div>
-    {% endfor %}
 </div>
 
-{% end block %}
+{% endblock %}

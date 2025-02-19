@@ -1,12 +1,37 @@
 {% extends "weather_report/layout.html" %}
 {% block body %}
 
+<h3>{{crag.name}} forecast </h3>
+
 <div class="row">
-    {% for crag in Crags %}
-    <div calss="col">
-        Weather display 1
+   
+    <div id="current-forecast" class="col">
+        <div class="container-md">
+            <h5>Current conditions</h5>
+            <p>
+                {% if forecast.current_is_day != 0.0 %}
+                    DAY
+                {% else %}
+                    NIGHT
+                {% endif %}
+            </p>
+            <p>
+                Temp: {{forecast.current_temperature_2m}} feels like {{forecast.current_apparent_temperature}}<br>
+                Humidity: {{forecast.current_humidity}} <br>
+                Percipitation: {{forecast.current_precipitation}}<br>
+                Wind: {{forecast.current_wind_speed_10m |floatformat:2 }}km/h.<br>
+                Heading of {{forecast.current_wind_direction_10m |floatformat:2 }}</p>
+        </div>
     </div>
+
+    <div id="3d-forecast" class="col">
+        <div class="container-md">
+            <h5>3 day forecast</h5>
+            <p> tbd </p>
+        </div>
+    </div>
+
     
 </div>
 
-{% end block %}
+{% endblock %}

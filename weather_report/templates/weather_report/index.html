@@ -4,7 +4,7 @@
 {% block body %}
 
 
-    <div class="row">
+    <div id="top-3" class="row">
         <div class="col">
             Weather display 1
         </div>
@@ -16,17 +16,17 @@
         </div>
     </div>
 
-    <div class="row">
+    <div id="region-list" class="row">
         <div class="col-12">
             <h2>Regions</h2>
         </div>
         {% for region in regions %}
-        <div class="col">
+        <div class="col-3">
             <div class="container-md">
                 <ul><h3>{{region.name}}</h3>
                     {% for area in areas %}
                     {% if area.region == region %}
-                    <li><a href="{% url 'area_forecast' area.name %}">{{region.name}}</a></li>
+                    <li><a href="{% url 'area_forecast' area.name %}">{{area.name}}</a></li>
                     {% endif %}
                     {% endfor %}
                 </ul>

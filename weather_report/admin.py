@@ -6,4 +6,4 @@ from .models import *
 admin.site.register(Area)
 admin.site.register(User)
 admin.site.register(Region)
-admin.site.register(Crags)
+admin.site.register(Crag)
