@@ -27,12 +27,20 @@ class Area(models.Model):
   
   def __str__(self):
     return self.name
+  
+class ClimbingType(models.Model):
+  type = models.CharField(max_length=25)
+
+  def __str__(self):
+    return self.type
+  
 
 class Crag(models.Model):
   area = models.ForeignKey(Area, on_delete=models.CASCADE)
   region = models.ForeignKey(Region, on_delete=models.CASCADE)
   name = models.CharField(max_length=50)
   slug = slug = models.SlugField(unique=True, blank=True)
+  type = models.ManyToManyField(ClimbingType, blank=True, null=True)
   latitude = models.DecimalField(max_digits=9, decimal_places=6)
   longitude = models.DecimalField(max_digits=9, decimal_places=6)
   elevation = models.DecimalField(max_digits=5, decimal_places=1)
