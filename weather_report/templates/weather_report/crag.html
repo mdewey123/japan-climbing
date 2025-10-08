@@ -16,18 +16,62 @@
                 {% endif %}
             </p>
             <p>
-                Temp: {{forecast.current_temperature_2m}} feels like {{forecast.current_apparent_temperature}}<br>
-                Humidity: {{forecast.current_humidity}} <br>
-                Percipitation: {{forecast.current_precipitation}}<br>
-                Wind: {{forecast.current_wind_speed_10m |floatformat:2 }}km/h.<br>
-                Heading of {{forecast.current_wind_direction_10m |floatformat:2 }}</p>
+                Temp: {{forecast.curent_temperature_2m|floatformat:0}}°C feels like {{forecast.current_apparent_temperature|floatformat:0}}°C<br>
+                Humidity: {{forecast.curent_relative_humidity_2m}}% <br>
+                Percipitation: {{forecast.curent_precipitation|floatformat:0}}<br>
+                Wind: {{forecast.curent_wind_speed_10m|floatformat:2}} km/h.<br>
+                Heading of {{forecast.curent_wind_direction_10m|floatformat:2}}
+            </p>
         </div>
     </div>
 
-    <div id="3d-forecast" class="col">
+    <div id="hourly_forecast" class="col">
+        <div class="container-md col">
+            <h5 class="">Next 24 hours</h5>
+            <p>
+                Min Temp: {{ stats.temp_min|floatformat:0 }}°C <br>
+                Max Temp: {{ stats.temp_max|floatformat:0 }}°C <br>
+                Avg Temp: {{ stats.temp_avg|floatformat:0 }}°C <br>
+            </p>
+            <div class="hourly-graph">
+            
+            </div>
+            
+
+            {% for hour in hourly_forecast %}
+                <div class="row-1 card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Hour {{ forloop.counter }}</h5>
+                    <p>
+                        Time: {{ hour.time }} <br>
+                        Temp: {{ hour.temperature_2m|floatformat:0 }}°C <br>
+                        Precipitation: {{ hour.precipitation|floatformat:2 }} mm <br>
+                        Wind Speed: {{ hour.windspeed_10m|floatformat:2 }} km/h <br>
+                        Wind Direction: {{ hour.winddirection_10m|floatformat:2 }}° <br>
+                    </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="3day-forecast" class="col">
         <div class="container-md">
-            <h5>3 day forecast</h5>
-            <p> tbd </p>
+            <h5 class="">3 day forecast</h5>
+            {% for day in daily_forecast %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Day {{ forloop.counter }}</h5>
+                    <p>
+                        Date: {{ day.date }} <br>
+                        Min Temp: {{ day.temperature_2m_min|floatformat:0 }}°C <br>
+                        Max Temp: {{ day.temperature_2m_max|floatformat:0 }}°C <br>
+                        Precipitation: {{ day.precipitation_probability }}% <br>
+                        Wind Speed Max: {{ day.windspeed_10m_max }} km/h <br>
+                    </p>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 
